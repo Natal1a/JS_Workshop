@@ -22,18 +22,24 @@ document.addEventListener("DOMContentLoaded", function() {
   removeFinishedTasksButton.addEventListener("click", removeFinishedTasks)
 
   function addTask() {
-    var input = document.getElementById("taskInput");
-    var newTask = document.createElement("li");
-    if (input.value.length <= 5) { //check if task is longer than 5
+    let taskInput = document.getElementById("taskInput");
+    let priorityInput = document.getElementById("priorityInput");
+
+    let newTask = document.createElement("li");
+    if (taskInput.value.length <= 5) { //check if task is longer than 5
       alert("Task is to short");
-      input.value = '';
-    } else if (input.value.length > 100) { //check if task isn't longer than 100
+      taskInput.value = '';
+    } else if (taskInput.value.length > 100) { //check if task isn't longer than 100
       alert("Task is to long");
-      input.value = '';
+      taskInput.value = '';
     } else { // add new task with buttons to list and update counter:
-      newTask.innerHTML = `<h1>${input.value}</h1><button class="deleteTask">Delete</button><button class="taskCompleted">Completed</button>`
+
+      newTask.innerHTML = `
+        <h1>${taskInput.value}</h1>
+        <button class="deleteTask">Delete</button>
+        <button class="taskCompleted">Completed</button>`
       taskList.appendChild(newTask);
-      input.value = '';
+      taskInput.value = '';
       taskCount++;
       updateCounter(taskCount);
 
